@@ -60,6 +60,10 @@ header .account-panel {
   right: 40px;
 }
 
+header .account-panel h4 {
+  color: #212529;
+}
+
 header .account-panel button {
   background: none;
   border: none;
