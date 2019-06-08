@@ -16,17 +16,38 @@
     img{
       align-self: start;
       margin-bottom: 50px;
+      width: 130px;
+    }
+
+    .incorrect-data{
+      position: relative;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1rem;
+      border: 1px solid transparent;
+      border-radius: 0.25rem;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      width: 95%;
+      margin-bottom: 20px
     }
 
     form{
       width: 95%;
       position: relative;
 
+      .invalid-input{
+        position: relative;
+        top: -50px;
+        color: red;
+        font-size: .8em;
+      }
+
       .input-group{
         position: relative;
         text-align: center;
         border-bottom: 1px solid #a9a9a9;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
         padding-bottom: 5px;
         width: 100%;
 
@@ -57,15 +78,15 @@
         background-color: white;
       }
 
-      .input-group:nth-child(1):before{
+      .company-input-group:before{
         content: "\f1ad";
       }
 
-      .input-group:nth-child(2):before{
+      .login-input-group:before{
         content: "\f007";
       }
 
-      .input-group:nth-child(3):before{
+      .password-input-group:before{
         font-weight: 600;
         content: "\f023";
       }

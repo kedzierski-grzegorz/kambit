@@ -1,17 +1,33 @@
 <div class="container">
   <section class="login-panel">
     <img src="/assets/logo/logo.svg" alt="Softlex logo">
+    <p class="incorrect-data" *ngIf="incorrectData === true">Niepoprawne dane logowania.</p>
     <form [formGroup]="loginForm" (submit)="login(loginForm)" #form>
-      <div class="input-group">
-        <input class="k-textbox" type="text" placeholder="Firma" name="company" formControlName="company"/>
+      <div class="input-group company-input-group">
+        <input class="k-textbox" type="text" placeholder="Firma" name="firm" formControlName="firm"/>
       </div>
-      <div class="input-group">
+      <span class="invalid-input"
+            *ngIf="!loginForm.controls['firm'].valid && loginForm.controls['firm'].dirty">
+            Firma jest wymagana
+      </span>
+
+      <div class="input-group login-input-group">
         <input class="k-textbox" type="text" placeholder="Login" name="login" formControlName="login"/>
       </div>
-      <div class="input-group">
+      <span class="invalid-input"
+            *ngIf="!loginForm.controls['login'].valid && loginForm.controls['login'].dirty">
+            Login jest wymagany
+      </span>
+
+      <div class="input-group password-input-group">
         <input class="k-textbox" type="password" placeholder="Hasło" name="password" formControlName="password"/>
       </div>
-      <div class="remember-me-panel">
+      <span class="invalid-input"
+            *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].dirty">
+            Hasło jest wymagane
+      </span>
+
+      <div class="remember-me-panel" >
         <input type="checkbox" name="rememberMe" formControlName ="rememberMe" id="rememberMe">
         <label for="rememberMe">Zapamiętaj mnie</label>
       </div>

@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  incorrectData = false;
   loginForm: FormGroup;
 
   constructor(private auth: AuthService, private router: Router, private formBuilder: FormBuilder) {
@@ -23,14 +24,29 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      company: '',
-      login: '',
-      password: '',
+      firm: ['', Validators.required],
+      login: ['', Validators.required],
+      password: ['', Validators.required],
       rememberMe: false
     });
   }
 
   login(form: FormGroup): void {
-    console.log(form.value);
+    this.incorrectData = false;
+
+    Object.keys(form.controls).forEach((input) => {
+      form.controls[input].markAsDirty();
+    });
+
+    if (form.valid) {
+      this.auth.signIn(form.controls.firm.value, form.controls.login.value, form.controls.password.value).toPromise()
+        .then(res => {
+          this.auth.setToken(res);
+          this.router.navigate(['']);
+        })
+        .catch(err => {
+          this.incorrectData = true;
+        });
+    }
   }
 }
