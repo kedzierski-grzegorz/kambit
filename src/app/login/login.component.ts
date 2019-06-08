@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthService } from './../auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router) {
+    (document.querySelector('kambit-header') as HTMLElement).style.setProperty('display', 'none');
+    (document.querySelector('kambit-footer') as HTMLElement).style.setProperty('display', 'none');
+
+    if (auth.isAuthenticated()) {
+      router.navigate(['']);
+    }
+  }
 
   ngOnInit() {
   }
