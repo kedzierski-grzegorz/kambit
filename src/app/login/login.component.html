@@ -1,3 +1,26 @@
-<p>
-  login works!
-</p>
+<div class="container">
+  <section class="login-panel">
+    <img src="/assets/logo/logo.svg" alt="Softlex logo">
+    <form [formGroup]="loginForm" (submit)="login(loginForm)" #form>
+      <div class="input-group">
+        <input class="k-textbox" type="text" placeholder="Firma" name="company" formControlName="company"/>
+      </div>
+      <div class="input-group">
+        <input class="k-textbox" type="text" placeholder="Login" name="login" formControlName="login"/>
+      </div>
+      <div class="input-group">
+        <input class="k-textbox" type="password" placeholder="Hasło" name="password" formControlName="password"/>
+      </div>
+      <div class="remember-me-panel">
+        <input type="checkbox" name="rememberMe" formControlName ="rememberMe" id="rememberMe">
+        <label for="rememberMe">Zapamiętaj mnie</label>
+      </div>
+      <button kendoButton [primary]="true" type="submit">Zaloguj</button>
+    </form>
+  </section>
+  <section class="welcome-panel">
+    <h1>Witaj w <b>Softlexie</b></h1>
+    <h2>Zaloguj się do swojego konta</h2>
+    <p>Kambit.pl © 2002 - 2019 Powered by Grzegorz Kędzierski</p>
+  </section>
+</div>

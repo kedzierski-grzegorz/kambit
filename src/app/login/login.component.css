@@ -1,0 +1,149 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .login-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 42%;
+  padding: 6vw;
+}
+
+.container .login-panel img {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  margin-bottom: 50px;
+}
+
+.container .login-panel form {
+  width: 95%;
+  position: relative;
+}
+
+.container .login-panel form .input-group {
+  position: relative;
+  text-align: center;
+  border-bottom: 1px solid #a9a9a9;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+.container .login-panel form .input-group input {
+  text-align: center;
+  border: 0;
+  width: 100%;
+  color: #5e5e5e;
+  padding-right: 0;
+}
+
+.container .login-panel form .input-group input:focus {
+  border: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.container .login-panel form .input-group:before {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 5px;
+  width: 5%;
+  padding-right: 2px;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 300;
+  color: #a9a9a9;
+  background-color: white;
+}
+
+.container .login-panel form .input-group:nth-child(1):before {
+  content: "\f1ad";
+}
+
+.container .login-panel form .input-group:nth-child(2):before {
+  content: "\f007";
+}
+
+.container .login-panel form .input-group:nth-child(3):before {
+  font-weight: 600;
+  content: "\f023";
+}
+
+.container .login-panel form .remember-me-panel {
+  position: relative;
+  margin-top: 50px;
+}
+
+.container .login-panel form .remember-me-panel label {
+  padding-left: 5px;
+  font-size: .8em;
+  color: #212529;
+}
+
+.container .login-panel form button {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  width: 35%;
+  height: 35px;
+}
+
+.container .welcome-panel {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 58%;
+  background-image: url("/assets/login/bg-login.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.container .welcome-panel h1 {
+  font-size: 4.6em;
+  margin-top: -25vh;
+  margin-bottom: 2vh;
+}
+
+.container .welcome-panel h1, .container .welcome-panel h2 {
+  font-weight: normal;
+  text-align: left;
+  width: 100%;
+  padding-left: 14%;
+}
+
+.container .welcome-panel p {
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
+  font-size: .7em;
+  font-weight: bold;
+}
+/*# sourceMappingURL=login.component.css.map */

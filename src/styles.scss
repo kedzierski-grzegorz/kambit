@@ -5,3 +5,7 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+
+$primary: #26a69a;
+@import "../node_modules/@progress/kendo-theme-material/scss/all.scss";

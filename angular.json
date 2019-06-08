@@ -28,8 +28,9 @@
             ],
             "styles": [
               {
-                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                "input": "node_modules/@progress/kendo-theme-material/dist/all.css"
               },
+              "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/styles.scss"
             ],
             "scripts": [],
