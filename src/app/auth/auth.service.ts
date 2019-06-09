@@ -24,7 +24,7 @@ export class AuthService {
     body.set('login', login);
     body.set('password', password);
 
-    return this.http.post(this.API_URL + 'Login', body.toString(), this.httpOptions.getOptions());
+    return this.http.post(this.API_URL + 'Login', body.toString(), this.httpOptions.getOptions(false));
   }
 
   getUser(): Observable<User> {
@@ -69,6 +69,7 @@ export class AuthService {
     localStorage.removeItem('loggedUserCti');
     localStorage.removeItem('token');
     this.loggedUser = undefined;
+    this.loggedUser$.next(this.loggedUser);
   }
 
   isSessionActive(): Observable<any> {

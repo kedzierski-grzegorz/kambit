@@ -1,0 +1,57 @@
+@import "../../theme/theme.scss";
+
+.container{
+  position: relative;
+  width: 100%;
+  padding: 48px;
+
+  h2{
+    font-size: 2em;
+  }
+
+  .add-campaign{
+    position: absolute;
+    right: 48px;
+    top: 48px;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-transform: capitalize;
+  }
+
+  .campaigns-container{
+    width: 100%;
+    box-shadow: $shadow;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 1.25rem;
+    margin-top: 40px;
+
+    form{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+
+      input[type="text"]{
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        border-width: 1px;
+        color: #727272;
+        border-color: rgba(33, 37, 41, 0.15);
+        width: 350px;
+      }
+
+      kendo-buttongroup{
+        box-shadow: none;
+
+        button{
+          text-transform: capitalize;
+        }
+
+        button:first-child{
+          background-color: #f5f5f5;
+        }
+      }
+    }
+  }
+}

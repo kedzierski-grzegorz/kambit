@@ -1,3 +1,37 @@
-<p>
-  cti works!
-</p>
+<div class="container">
+  <h2>Kampanie CTI</h2>
+  <button class="add-campaign" kendoButton [primary]="true" [icon]="'plus'">Dodaj</button>
+  <div class="campaigns-container">
+    <form [formGroup] (submit)="filter(filerName)">
+      <input type="text" class="k-textbox" placeholder="Nazwa" #filerName>
+      <kendo-buttongroup>
+        <button kendoButton [icon]="'filter-clear'" [look]="'default'">Wyczyść</button>
+        <button type="button" kendoButton [icon]="'filter'" (click)="filter(filerName)" [primary]="true">Filtruj</button>
+      </kendo-buttongroup>
+    </form>
+    <kendo-grid [data]=""
+                [pageable]="true"
+                [pageSize]="20"
+                [sortable]="true">
+        <kendo-grid-column field="ProductID" title="Akcje" width="100">
+        </kendo-grid-column>
+        <kendo-grid-column field="ProductName" title="" width="200">
+        </kendo-grid-column>
+        <kendo-grid-column field="Category.CategoryName" title="Tel. stac.">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitPrice" title="Tel. GSM">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="UnitsInStock" title="Tel. os. kon.">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+          </ng-template>
+        </kendo-grid-column>
+    </kendo-grid>
+  </div>
+</div>

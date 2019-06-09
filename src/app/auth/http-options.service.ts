@@ -9,12 +9,14 @@ export class HttpOptionsService {
 
   constructor(private token: TokenGetterService) { }
 
-  getOptions() {
+  getOptions(withAuthorization = true) {
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: this.token.getToken()
-      })
+        Authorization: withAuthorization ? this.token.getToken() : ''
+      }),
+
+      params: {}
     };
   }
 }
