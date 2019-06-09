@@ -10,15 +10,20 @@ import { Router, RouterEvent } from '@angular/router';
 export class AppComponent {
 
   isLoggedIn: any;
+  isLoading = true;
 
   constructor(private auth: AuthService, private router: Router) {
     this.isLoggedIn = auth.getUser();
+
     router.events.subscribe((event: RouterEvent) => {
-      if (event.id === 1 && event.constructor.name === 'NavigationEnd') {
+      if (event.constructor.name === 'NavigationEnd' && this.isLoading === true) {
         const loading = document.getElementById('loading-panel');
-        setTimeout(() => {
-          loading.parentNode.removeChild(loading);
-        }, 2000);
+        if (loading !== null ) {
+          this.isLoading = false;
+          setTimeout(() => {
+            loading.parentNode.removeChild(loading);
+          }, 2000);
+        }
       }
     });
   }

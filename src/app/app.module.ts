@@ -13,6 +13,8 @@ import { LoginModule } from './login/login.module';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
+import { TokenGetterService } from './auth/token-getter.service';
+import { HttpOptionsService } from './auth/http-options.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { LoadingComponent } from './loading/loading.component';
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, HttpOptionsService, TokenGetterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

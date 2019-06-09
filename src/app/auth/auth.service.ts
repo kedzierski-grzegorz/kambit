@@ -1,8 +1,10 @@
+import { HttpOptionsService } from './http-options.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from './user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class AuthService {
   private loggedUser: User;
   private loggedUser$ = new BehaviorSubject<User>(this.loggedUser);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private httpOptions: HttpOptionsService) { }
 
   signIn(firm: string, login: string, password: string): Observable<any> {
     const body = new URLSearchParams();
@@ -22,19 +24,19 @@ export class AuthService {
     body.set('login', login);
     body.set('password', password);
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-      })
-    };
-
-    return this.http.post(this.API_URL + 'Login', body.toString(), httpOptions);
+    return this.http.post(this.API_URL + 'Login', body.toString(), this.httpOptions.getOptions());
   }
 
   getUser(): Observable<User> {
     const data = sessionStorage.getItem('loggedUser') || localStorage.getItem('loggedUser');
+    const helper = new JwtHelperService();
     this.loggedUser = JSON.parse(data);
     this.loggedUser$.next(this.loggedUser);
+
+    if (!this.loggedUser || helper.isTokenExpired(this.loggedUser.token)) {
+      this.loggedUser$.next(null);
+    }
+
     return this.loggedUser$.asObservable();
   }
 
@@ -70,12 +72,6 @@ export class AuthService {
   }
 
   isSessionActive(): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: sessionStorage.getItem('token') || localStorage.getItem('token') || ''
-      })
-    };
-    return this.http.get(this.API_URL + 'Login/IsSessionActive', httpOptions);
+    return this.http.get(this.API_URL + 'Login/IsSessionActive', this.httpOptions.getOptions());
   }
 }
