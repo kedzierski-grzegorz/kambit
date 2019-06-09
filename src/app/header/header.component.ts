@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.username = sessionStorage.getItem('login');
     this.auth.getUser().subscribe(data => {this.username = data.userName;});
   }
 

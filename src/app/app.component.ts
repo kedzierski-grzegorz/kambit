@@ -1,5 +1,6 @@
 import { AuthService } from './auth/auth.service';
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,13 @@ export class AppComponent {
 
   isLoggedIn: any;
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
     this.isLoggedIn = auth.getUser();
+    router.events.subscribe((event: RouterEvent) => {
+      if (event.id === 1 && event.constructor.name === 'NavigationEnd') {
+        const loading = document.getElementById('loading-panel');
+        loading.parentNode.removeChild(loading);
+      }
+    });
   }
 }
