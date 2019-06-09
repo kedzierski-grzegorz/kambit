@@ -32,17 +32,26 @@ export class AuthService {
   }
 
   getUser(): Observable<User> {
-    this.loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'));
+    const data = sessionStorage.getItem('loggedUser') || localStorage.getItem('loggedUser');
+    this.loggedUser = JSON.parse(data);
     this.loggedUser$.next(this.loggedUser);
     return this.loggedUser$.asObservable();
   }
 
-  setToken(response): void {
+  setToken(response, rememberMe = false): void {
     sessionStorage.setItem('firm', response.firmId);
     sessionStorage.setItem('login', response.userName);
     sessionStorage.setItem('loggedUser', JSON.stringify(response));
     sessionStorage.setItem('loggedUserCti', JSON.stringify(response));
     sessionStorage.setItem('token', response.token);
+
+    if (rememberMe) {
+      localStorage.setItem('firm', response.firmId);
+      localStorage.setItem('login', response.userName);
+      localStorage.setItem('loggedUser', JSON.stringify(response));
+      localStorage.setItem('loggedUserCti', JSON.stringify(response));
+      localStorage.setItem('token', response.token);
+    }
   }
 
   logout(): void {
@@ -51,6 +60,12 @@ export class AuthService {
     sessionStorage.removeItem('loggedUser');
     sessionStorage.removeItem('loggedUserCti');
     sessionStorage.removeItem('token');
+
+    localStorage.removeItem('firm');
+    localStorage.removeItem('login');
+    localStorage.removeItem('loggedUser');
+    localStorage.removeItem('loggedUserCti');
+    localStorage.removeItem('token');
     this.loggedUser = undefined;
   }
 
@@ -58,7 +73,7 @@ export class AuthService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: sessionStorage.getItem('token') || ''
+        Authorization: sessionStorage.getItem('token') || localStorage.getItem('token') || ''
       })
     };
     return this.http.get(this.API_URL + 'Login/IsSessionActive', httpOptions);

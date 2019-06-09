@@ -16,7 +16,9 @@ export class AppComponent {
     router.events.subscribe((event: RouterEvent) => {
       if (event.id === 1 && event.constructor.name === 'NavigationEnd') {
         const loading = document.getElementById('loading-panel');
-        loading.parentNode.removeChild(loading);
+        setTimeout(() => {
+          loading.parentNode.removeChild(loading);
+        }, 2000);
       }
     });
   }

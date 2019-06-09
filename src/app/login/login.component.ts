@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.auth.signIn(form.controls.firm.value, form.controls.login.value, form.controls.password.value).toPromise()
         .then(res => {
-          this.auth.setToken(res);
+          this.auth.setToken(res, form.controls.rememberMe.value);
           this.router.navigate(['']);
         })
         .catch(err => {
