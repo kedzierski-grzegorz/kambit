@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  username: string;
+
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit() {
+    //this.username = sessionStorage.getItem('login');
+    this.auth.getUser().subscribe(data => {this.username = data.userName;});
   }
 
   logout(): void {

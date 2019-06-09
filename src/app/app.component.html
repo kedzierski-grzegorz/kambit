@@ -1,3 +1,3 @@
-<kambit-header></kambit-header>
+<kambit-header *ngIf="isLoggedIn | async" ></kambit-header>
 <router-outlet></router-outlet>
-<kambit-footer></kambit-footer>
+<kambit-footer *ngIf="isLoggedIn | async"></kambit-footer>

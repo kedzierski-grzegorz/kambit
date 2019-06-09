@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import { catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,13 +16,21 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.auth.isAuthenticated()) {
-      (document.querySelector('kambit-header') as HTMLElement).style.setProperty('display', 'block');
-      (document.querySelector('kambit-footer') as HTMLElement).style.setProperty('display', 'block');
-      return true;
-    } else {
-      this.router.navigate(['/login']);
-      return false;
-    }
+
+    return this.auth.isSessionActive().pipe(
+      map(isLoggedIn => {
+        if (isLoggedIn) {
+          this.auth.getUser();
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      }),
+      catchError((err) => {
+        this.router.navigate(['/login']);
+        return of(false);
+      }
+    ));
   }
 }

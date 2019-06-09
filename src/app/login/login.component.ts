@@ -14,12 +14,11 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private auth: AuthService, private router: Router, private formBuilder: FormBuilder) {
-    (document.querySelector('kambit-header') as HTMLElement).style.setProperty('display', 'none');
-    (document.querySelector('kambit-footer') as HTMLElement).style.setProperty('display', 'none');
-
-    if (auth.isAuthenticated()) {
-      router.navigate(['']);
-    }
+    auth.isSessionActive().subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        router.navigate(['']);
+      }
+    });
   }
 
   ngOnInit() {
