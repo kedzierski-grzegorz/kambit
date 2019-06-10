@@ -9,27 +9,31 @@
         <button type="button" kendoButton [icon]="'filter'" (click)="filter(filerName)" [primary]="true">Filtruj</button>
       </kendo-buttongroup>
     </form>
-    <kendo-grid [data]=""
+    <kendo-grid [kendoGridBinding]="listOfCtiCampaigns"
                 [pageable]="true"
                 [pageSize]="20"
-                [sortable]="true">
-        <kendo-grid-column field="ProductID" title="Akcje" width="100">
+                [sortable]="true"
+                >
+        <kendo-grid-column title="Akcje" width="100">
         </kendo-grid-column>
-        <kendo-grid-column field="ProductName" title="" width="200">
+        <kendo-grid-column field="Nazwa" title="" width="200">
         </kendo-grid-column>
-        <kendo-grid-column field="Category.CategoryName" title="Tel. stac.">
+        <kendo-grid-column field="flgTelStac" title="Tel. stac." [style]="{'text-align':'center'}">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.flgTelStac" disabled/>
+            <label class="k-checkbox-label"></label>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="UnitPrice" title="Tel. GSM">
+        <kendo-grid-column field="flgGSM" title="Tel. GSM" [style]="{'text-align':'center'}">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.flgGSM" disabled/>
+            <label class="k-checkbox-label"></label>
           </ng-template>
         </kendo-grid-column>
-        <kendo-grid-column field="UnitsInStock" title="Tel. os. kon.">
+        <kendo-grid-column field="flgTelOsKon" title="Tel. os. kon." [style]="{'text-align':'center'}">
           <ng-template kendoGridCellTemplate let-dataItem>
-            <input type="checkbox" class="k-checkbox" [checked]="dataItem.Discontinued" disabled/>
+            <input type="checkbox" class="k-checkbox" [checked]="dataItem.flgTelOsKon" disabled/>
+            <label class="k-checkbox-label"></label>
           </ng-template>
         </kendo-grid-column>
     </kendo-grid>

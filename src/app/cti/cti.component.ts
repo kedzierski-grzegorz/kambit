@@ -1,3 +1,4 @@
+import { CtiCampaign } from './shared/cti-campaign';
 import { HttpOptionsService } from './../auth/http-options.service';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -10,16 +11,11 @@ import { AuthService } from '../auth/auth.service';
 })
 export class CtiComponent implements OnInit {
 
+  listOfCtiCampaigns: CtiCampaign[];
+
   constructor(private auth: AuthService, private http: HttpClient, private options: HttpOptionsService) {}
 
   ngOnInit() {
-    const body = new URLSearchParams();
-    body.set('id', '7');
-
-    this.http.get('https://hades.kambit.pl:1003/api/Cti/GetCampaign/7', this.options.getOptions())
-    .subscribe(res => {
-      console.log(res);
-    });
   }
 
   filter(filterInput): void {
@@ -40,9 +36,9 @@ export class CtiComponent implements OnInit {
     options.params = body;
 
 
-    this.http.get('https://hades.kambit.pl:1003/api/Cti/GetCampaigns', this.options.getOptions())
+    this.http.get<CtiCampaign[]>('https://hades.kambit.pl:1003/api/Cti/GetCampaigns', this.options.getOptions())
     .subscribe(res => {
-      console.log(res);
+      this.listOfCtiCampaigns = res;
     });
   }
 

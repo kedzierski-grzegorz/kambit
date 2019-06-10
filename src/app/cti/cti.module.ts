@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CtiComponent } from './cti.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 @NgModule({
   declarations: [CtiComponent],
@@ -13,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ButtonsModule,
     GridModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputsModule
   ]
 })
 export class CtiModule { }
