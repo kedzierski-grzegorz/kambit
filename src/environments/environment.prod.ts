@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  API_URL: 'https://hades.kambit.pl:1003/api/'
 };

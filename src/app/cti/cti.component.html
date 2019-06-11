@@ -2,11 +2,11 @@
   <h2>Kampanie CTI</h2>
   <button class="add-campaign" kendoButton [primary]="true" [icon]="'plus'">Dodaj</button>
   <div class="campaigns-container">
-    <form [formGroup] (submit)="filter(filerName)">
-      <input type="text" class="k-textbox" placeholder="Nazwa" #filerName>
+    <form [formGroup]="filterForm" (submit)="filter(filterForm)">
+      <input type="text" class="k-textbox" placeholder="Nazwa" name="filterName" formControlName="filterName">
       <kendo-buttongroup>
-        <button kendoButton [icon]="'filter-clear'" [look]="'default'">Wyczyść</button>
-        <button type="button" kendoButton [icon]="'filter'" (click)="filter(filerName)" [primary]="true">Filtruj</button>
+        <button type="button" kendoButton [icon]="'filter-clear'" [look]="'default'" (click)="clearFilter()">Wyczyść</button>
+        <button type="submit" kendoButton [icon]="'filter'" [primary]="true">Filtruj</button>
       </kendo-buttongroup>
     </form>
     <kendo-grid [kendoGridBinding]="listOfCtiCampaigns"

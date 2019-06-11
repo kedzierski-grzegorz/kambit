@@ -1,3 +1,4 @@
+import { CtiCampaignsService } from './shared/cti-campaigns.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -16,6 +17,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
     GridModule,
     ReactiveFormsModule,
     InputsModule
-  ]
+  ],
+  providers: [CtiCampaignsService]
 })
 export class CtiModule { }

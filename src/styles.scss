@@ -8,4 +8,11 @@
 
 
 $primary: #26a69a;
+
 @import "../node_modules/@progress/kendo-theme-material/scss/all.scss";
+
+.k-checkbox:disabled:checked + .k-checkbox-label::after,
+.k-checkbox:disabled:indeterminate + .k-checkbox-label::after {
+  background: $primary;
+  color: white;
+}

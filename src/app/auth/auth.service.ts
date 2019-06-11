@@ -1,17 +1,16 @@
 import { HttpOptionsService } from './http-options.service';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User } from './user';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  readonly API_URL = 'https://hades.kambit.pl:1003/api/';
 
   private loggedUser: User;
   private loggedUser$ = new BehaviorSubject<User>(this.loggedUser);
@@ -19,12 +18,12 @@ export class AuthService {
   constructor(private http: HttpClient, private httpOptions: HttpOptionsService) { }
 
   signIn(firm: string, login: string, password: string): Observable<any> {
-    const body = new URLSearchParams();
-    body.set('firmId', firm);
-    body.set('login', login);
-    body.set('password', password);
+    const body = new HttpParams()
+    .set('firmId', firm)
+    .set('login', login)
+    .set('password', password);
 
-    return this.http.post(this.API_URL + 'Login', body.toString(), this.httpOptions.getOptions(false));
+    return this.http.post(environment.API_URL + 'Login', body.toString(), this.httpOptions.getOptions(false));
   }
 
   getUser(): Observable<User> {
@@ -73,6 +72,6 @@ export class AuthService {
   }
 
   isSessionActive(): Observable<any> {
-    return this.http.get(this.API_URL + 'Login/IsSessionActive', this.httpOptions.getOptions());
+    return this.http.get(environment.API_URL + 'Login/IsSessionActive', this.httpOptions.getOptions());
   }
 }
