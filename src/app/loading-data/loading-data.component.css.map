@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,kBAAkB,CAAA;EAChB,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;CAWpB;;AAfD,AAME,kBANgB,CAMhB,IAAI,CAAA;EACF,SAAS,EAAE,IAAI;EACf,MAAM,EAAE,IAAI;CACb;;AATH,AAWE,kBAXgB,CAWhB,IAAI,AAAA,QAAQ;AAXd,kBAAkB,CAYhB,IAAI,AAAA,OAAO,CAAA;EACT,YAAY,EAAE,MAAM;CACrB",
+    "sources": [
+        "loading-data.component.scss"
+    ],
+    "names": [],
+    "file": "loading-data.component.css"
+}

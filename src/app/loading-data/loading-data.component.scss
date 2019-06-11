@@ -1,0 +1,16 @@
+.spinner-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span{
+    font-size: 32px;
+    margin: 10px;
+  }
+
+  span::before,
+  span::after{
+    border-width: .011em;
+  }
+}

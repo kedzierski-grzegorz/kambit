@@ -26,6 +26,17 @@
   margin-top: 40px;
 }
 
+.container .campaigns-container .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.container .campaigns-container .actions button {
+  width: 30px;
+  height: 28px;
+}
+
 .container .campaigns-container form {
   width: 100%;
   display: -webkit-box;

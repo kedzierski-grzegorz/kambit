@@ -5,16 +5,43 @@
     <form [formGroup]="filterForm" (submit)="filter(filterForm)">
       <input type="text" class="k-textbox" placeholder="Nazwa" name="filterName" formControlName="filterName">
       <kendo-buttongroup>
-        <button type="button" kendoButton [icon]="'filter-clear'" [look]="'default'" (click)="clearFilter()">Wyczyść</button>
-        <button type="submit" kendoButton [icon]="'filter'" [primary]="true">Filtruj</button>
+        <button [disabled]="listOfCtiCampaigns? false : true"
+                type="button"
+                kendoButton
+                [icon]="'filter-clear'"
+                [look]="'default'"
+                (click)="clearFilter()">
+                Wyczyść
+        </button>
+        <button [disabled]="listOfCtiCampaigns? false : true"
+                type="submit" kendoButton
+                [icon]="listOfCtiCampaigns ? 'filter' : 'loading'"
+                [primary]="true">
+                Filtruj
+        </button>
       </kendo-buttongroup>
     </form>
-    <kendo-grid [kendoGridBinding]="listOfCtiCampaigns"
+    <kendo-grid *ngIf="listOfCtiCampaigns else loading"
+                [kendoGridBinding]="listOfCtiCampaigns"
                 [pageable]="true"
                 [pageSize]="20"
                 [sortable]="true"
                 >
         <kendo-grid-column title="Akcje" width="100">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <div class="actions">
+                <button kendoButton
+                        [primary]="true"
+                        [look]="'bare'"
+                        [icon]="'edit'"
+                        (click)="editCampaign(dataItem.Id)"></button>
+                <button kendoButton
+                        [primary]="true"
+                        [look]="'bare'"
+                        [icon]="'trash'"
+                        (click)="removeCampaign(dataItem.Id)"></button>
+              </div>
+            </ng-template>
         </kendo-grid-column>
         <kendo-grid-column field="Nazwa" title="" width="200">
         </kendo-grid-column>
@@ -37,5 +64,8 @@
           </ng-template>
         </kendo-grid-column>
     </kendo-grid>
+    <ng-template #loading>
+      <kambit-loading-data></kambit-loading-data>
+    </ng-template>
   </div>
 </div>

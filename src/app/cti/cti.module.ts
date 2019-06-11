@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { CtiComponent } from './cti.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LoadingDataModule } from '../loading-data/loading-data.module';
 
 @NgModule({
   declarations: [CtiComponent],
@@ -16,7 +17,8 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
     ButtonsModule,
     GridModule,
     ReactiveFormsModule,
-    InputsModule
+    InputsModule,
+    LoadingDataModule
   ],
   providers: [CtiCampaignsService]
 })

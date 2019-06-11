@@ -1,6 +1,6 @@
 import { AuthService } from './auth/auth.service';
 import { Component} from '@angular/core';
-import { Router, RouterEvent } from '@angular/router';
+import { Router, Event, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,8 @@ export class AppComponent {
   constructor(private auth: AuthService, private router: Router) {
     this.isLoggedIn = auth.getUser();
 
-    router.events.subscribe((event: RouterEvent) => {
-      if (event.constructor.name === 'NavigationEnd' && this.isLoading === true) {
+    router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd && this.isLoading === true) {
         const loading = document.getElementById('loading-panel');
         if (loading !== null ) {
           this.isLoading = false;

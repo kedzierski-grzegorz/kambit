@@ -25,6 +25,15 @@
     padding: 1.25rem;
     margin-top: 40px;
 
+    .actions{
+      display: flex;
+
+      button{
+        width: 30px;
+        height: 28px;
+      }
+    }
+
     form{
       width: 100%;
       display: flex;

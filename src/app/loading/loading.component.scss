@@ -11,10 +11,15 @@
   justify-content: center;
   align-items: center;
 
-  img{
-    width: 150px;
+  span {
+    font-size: 35px;
     margin-top: 40px;
     margin-bottom: 10px;
+  }
+
+  span::before,
+  span::after{
+    border-width: .01em;
   }
 
   .spinner {

@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class CtiComponent implements OnInit {
 
-  listOfCtiCampaigns: CtiCampaign[];
+  listOfCtiCampaigns: CtiCampaign[] = [];
   filterForm: FormGroup;
 
   constructor(private auth: AuthService, private ctiCampaigns: CtiCampaignsService, private formBuilder: FormBuilder) {}
@@ -23,16 +23,26 @@ export class CtiComponent implements OnInit {
   }
 
   filter(filterForm: FormGroup): void {
-    this.ctiCampaigns.getCampaignByName(filterForm.controls.filterName.value).subscribe(campaigns => {
+    this.listOfCtiCampaigns = null;
+    this.ctiCampaigns.getCampaignByName(filterForm.controls.filterName.value || '').subscribe(campaigns => {
       this.listOfCtiCampaigns = campaigns;
     });
   }
 
   clearFilter(): void {
+    this.listOfCtiCampaigns = null;
     this.filterForm.reset();
     this.ctiCampaigns.getCampaignByName('').subscribe(campaigns => {
       this.listOfCtiCampaigns = campaigns;
     });
+  }
+
+  editCampaign(campaignId): void {
+    alert('Edit ' + campaignId);
+  }
+
+  removeCampaign(campaignId): void {
+    alert('Remove ' + campaignId);
   }
 
 }

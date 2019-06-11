@@ -17,7 +17,6 @@ import { TokenGetterService } from './auth/token-getter.service';
 import { HttpOptionsService } from './auth/http-options.service';
 import { GridModule } from '@progress/kendo-angular-grid';
 
-
 @NgModule({
   declarations: [
     AppComponent,
