@@ -12,12 +12,16 @@ export class CtiCampaignsService {
 
   constructor(private http: HttpClient, private httpOptions: HttpOptionsService) {}
 
-  getCampaignByName(name: string) {
+  getCampaignsByName(name: string) {
     const params = new HttpParams().append('Nazwa', name);
 
     const options = this.httpOptions.getOptions();
     options.params = params;
 
     return this.http.get<CtiCampaign[]>(environment.API_URL + 'Cti/GetCampaigns', options);
+  }
+
+  getCampaignById(campaignId) {
+    return this.http.get<CtiCampaign>(environment.API_URL + 'Cti/GetCampaign/' + campaignId, this.httpOptions.getOptions());
   }
 }

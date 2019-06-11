@@ -15,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoadingComponent } from './loading/loading.component';
 import { TokenGetterService } from './auth/token-getter.service';
 import { HttpOptionsService } from './auth/http-options.service';
-import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
@@ -32,8 +32,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
     LoginModule,
     ButtonsModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    GridModule
+    HttpClientModule
   ],
   providers: [AuthService, HttpOptionsService, TokenGetterService],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
+import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CtiCampaignsService } from './shared/cti-campaigns.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { NgModule } from '@angular/core';
@@ -19,7 +20,9 @@ import { CtiRoutingModule } from './cti-routing.module';
     HttpClientModule,
     ButtonsModule,
     GridModule,
+    LayoutModule,
     ReactiveFormsModule,
+    FormsModule,
     InputsModule,
     LoadingDataModule
   ],

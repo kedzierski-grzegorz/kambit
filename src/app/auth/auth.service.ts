@@ -32,7 +32,12 @@ export class AuthService {
     this.loggedUser = JSON.parse(data);
     this.loggedUser$.next(this.loggedUser);
 
-    if (!this.loggedUser || helper.isTokenExpired(this.loggedUser.token)) {
+    if (this.loggedUser && helper.isTokenExpired(this.loggedUser.token)) {
+      this.logout();
+      window.location.reload();
+    }
+
+    if (!this.loggedUser) {
       this.loggedUser$.next(null);
     }
 

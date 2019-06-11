@@ -1,3 +1,64 @@
-<p>
-  cti-editor works!
-</p>
+<div class="container">
+  <div class="campaign-info">
+    <div class="campaign-header">
+      <h1>{{name || 'Nowa kampania'}}</h1>
+
+      <kendo-buttongroup>
+        <button kendoButton [icon]="'undo'" [primary]="true" (click)="back()">Powrót</button>
+        <button kendoButton [icon]="'save'" [primary]="true" (click)="save()" [disabled]="!name">Zapisz</button>
+        <button kendoButton [icon]="'save'" [primary]="true" disabled="true">Zapisz i wyślij</button>
+      </kendo-buttongroup>
+    </div>
+
+    <div class="info-wrapper">
+      <kendo-panelbar [selectable]="false">
+        <kendo-panelbar-item [selected]="true" title="" expanded="true">
+          <ng-template kendoPanelBarItemTitle>
+            <h3>Podstawowe</h3>
+          </ng-template>
+
+          <ng-template kendoPanelBarContent>
+            <div class="input-basic-data-container">
+              <label>Nazwa</label>
+              <input [(ngModel)]="name" type="text" class="k-textbox" name="name" [ngStyle]="!name ? {'border-color': 'red'} : {}">
+
+              <div class="checkboxes-wrapper">
+                <div>
+                  <label>Tel. stac.</label>
+                  <kendo-switch [(ngModel)]="flgTelStac" [onLabel]="'Tak'" [offLabel]="'Nie'"></kendo-switch>
+                </div>
+
+                <div>
+                  <label>Tel. kom.</label>
+                  <kendo-switch [(ngModel)]="flgGSM" [onLabel]="'Tak'" [offLabel]="'Nie'"></kendo-switch>
+                </div>
+
+                <div>
+                  <label>Tel. os. kon.</label>
+                  <kendo-switch [(ngModel)]="flgTelOsKon" [onLabel]="'Tak'" [offLabel]="'Nie'"></kendo-switch>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </kendo-panelbar-item>
+      </kendo-panelbar>
+    </div>
+
+    <div class="info-wrapper">
+        <kendo-panelbar [selectable]="false">
+          <kendo-panelbar-item title="" expanded="true">
+            <ng-template kendoPanelBarItemTitle>
+              <h3>Notatka</h3>
+            </ng-template>
+
+            <ng-template kendoPanelBarContent>
+              <div class="note-container">
+                <textarea [(ngModel)]="note" kendoTextBox name="note"></textarea>
+              </div>
+            </ng-template>
+          </kendo-panelbar-item>
+        </kendo-panelbar>
+      </div>
+  </div>
+</div>
+

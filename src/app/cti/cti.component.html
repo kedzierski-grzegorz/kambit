@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Kampanie CTI</h2>
-  <button (click)="addCampaign()" [routerLink]="['/cti/edit/0']" class="add-campaign" kendoButton [primary]="true" [icon]="'plus'">Dodaj</button>
+  <button [routerLink]="['/cti/edit/0']" class="add-campaign" kendoButton [primary]="true" [icon]="'plus'">Dodaj</button>
   <div class="campaigns-container">
     <form [formGroup]="filterForm" (submit)="filter(filterForm)">
       <input type="text" class="k-textbox" placeholder="Nazwa" name="filterName" formControlName="filterName">

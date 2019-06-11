@@ -27,7 +27,7 @@ export class CtiComponent implements OnInit {
 
   filter(filterForm: FormGroup): void {
     this.listOfCtiCampaigns = null;
-    this.ctiCampaigns.getCampaignByName(filterForm.controls.filterName.value || '').subscribe(campaigns => {
+    this.ctiCampaigns.getCampaignsByName(filterForm.controls.filterName.value || '').subscribe(campaigns => {
       this.listOfCtiCampaigns = campaigns;
     });
   }
@@ -35,7 +35,7 @@ export class CtiComponent implements OnInit {
   clearFilter(): void {
     this.listOfCtiCampaigns = null;
     this.filterForm.reset();
-    this.ctiCampaigns.getCampaignByName('').subscribe(campaigns => {
+    this.ctiCampaigns.getCampaignsByName('').subscribe(campaigns => {
       this.listOfCtiCampaigns = campaigns;
     });
   }
