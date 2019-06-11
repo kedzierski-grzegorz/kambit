@@ -25,6 +25,10 @@ export class CtiCampaignsService {
     return this.http.get<CtiCampaign>(environment.API_URL + 'Cti/GetCampaign/' + campaignId, this.httpOptions.getOptions());
   }
 
+  deleteCampaignById(campaignId) {
+    return this.http.delete(environment.API_URL + 'Cti/DeleteCampaign/' + campaignId, this.httpOptions.getOptions());
+  }
+
   setCampaign(campaign: CtiCampaign) {
     return this.http.post(environment.API_URL + 'Cti/SetCampaign', campaign, this.httpOptions.getOptions(true, true));
   }

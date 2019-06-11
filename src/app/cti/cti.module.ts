@@ -1,3 +1,4 @@
+import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CtiCampaignsService } from './shared/cti-campaigns.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -24,7 +25,8 @@ import { CtiRoutingModule } from './cti-routing.module';
     ReactiveFormsModule,
     FormsModule,
     InputsModule,
-    LoadingDataModule
+    LoadingDataModule,
+    DialogsModule
   ],
   providers: [CtiCampaignsService]
 })

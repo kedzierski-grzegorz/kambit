@@ -39,7 +39,7 @@
                         [primary]="true"
                         [look]="'bare'"
                         [icon]="'trash'"
-                        (click)="removeCampaign(dataItem.Id)"></button>
+                        (click)="openDialog(dataItem.Id, dataItem.Nazwa)"></button>
               </div>
             </ng-template>
         </kendo-grid-column>
@@ -68,4 +68,6 @@
       <kambit-loading-data></kambit-loading-data>
     </ng-template>
   </div>
+
+  <div kendoDialogContainer></div>
 </div>

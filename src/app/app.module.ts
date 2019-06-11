@@ -16,7 +16,6 @@ import { LoadingComponent } from './loading/loading.component';
 import { TokenGetterService } from './auth/token-getter.service';
 import { HttpOptionsService } from './auth/http-options.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
