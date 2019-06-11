@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { CtiCampaignsService } from './shared/cti-campaigns.service';
 import { CtiCampaign } from './shared/cti-campaign';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,9 @@ export class CtiComponent implements OnInit {
   listOfCtiCampaigns: CtiCampaign[] = [];
   filterForm: FormGroup;
 
-  constructor(private auth: AuthService, private ctiCampaigns: CtiCampaignsService, private formBuilder: FormBuilder) {}
+  constructor(private ctiCampaigns: CtiCampaignsService,
+              private formBuilder: FormBuilder,
+              private router: Router) {}
 
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
@@ -35,10 +38,6 @@ export class CtiComponent implements OnInit {
     this.ctiCampaigns.getCampaignByName('').subscribe(campaigns => {
       this.listOfCtiCampaigns = campaigns;
     });
-  }
-
-  editCampaign(campaignId): void {
-    alert('Edit ' + campaignId);
   }
 
   removeCampaign(campaignId): void {

@@ -8,11 +8,14 @@ import { CtiComponent } from './cti.component';
 import { HttpClientModule } from '@angular/common/http';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LoadingDataModule } from '../loading-data/loading-data.module';
+import { CtiEditorComponent } from './cti-editor/cti-editor.component';
+import { CtiRoutingModule } from './cti-routing.module';
 
 @NgModule({
-  declarations: [CtiComponent],
+  declarations: [CtiComponent, CtiEditorComponent],
   imports: [
     CommonModule,
+    CtiRoutingModule,
     HttpClientModule,
     ButtonsModule,
     GridModule,
