@@ -39,6 +39,7 @@
   border-radius: 0.25rem;
   border-width: 1px;
   color: #727272;
+  border-color: rgba(33, 37, 41, 0.15);
 }
 
 .container .campaign-info .info-wrapper .input-basic-data-container {

@@ -1,6 +1,6 @@
 export interface CtiCampaign {
-  DataDo: Date;
-  DataOd: Date;
+  DataDo: Date | string;
+  DataOd: Date | string;
   Id: number;
   IdZewnetrzne: string;
   IloscProb: number;
@@ -9,8 +9,8 @@ export interface CtiCampaign {
   Notatka: string;
   UserMod: string;
   UserUtw: string;
-  cDataMod: Date;
-  cDataUtw: Date;
+  cDataMod: Date | string;
+  cDataUtw: Date | string;
   flgAktywna: boolean;
   flgGSM: boolean;
   flgStatus: number;

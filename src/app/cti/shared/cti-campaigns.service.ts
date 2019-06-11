@@ -24,4 +24,8 @@ export class CtiCampaignsService {
   getCampaignById(campaignId) {
     return this.http.get<CtiCampaign>(environment.API_URL + 'Cti/GetCampaign/' + campaignId, this.httpOptions.getOptions());
   }
+
+  setCampaign(campaign: CtiCampaign) {
+    return this.http.post(environment.API_URL + 'Cti/SetCampaign', campaign, this.httpOptions.getOptions(true, true));
+  }
 }

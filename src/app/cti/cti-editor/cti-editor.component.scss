@@ -4,6 +4,31 @@
   width: 100%;
   padding: 48px;
 
+  .message{
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+
+    p{
+      font-weight: bold;
+    }
+  }
+
+  .message-success{
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+
+  .message-error{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+
   .campaign-info{
     width: 100%;
     display: flex;

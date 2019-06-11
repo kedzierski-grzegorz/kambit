@@ -1,12 +1,36 @@
 <div class="container">
+  <div #message class="message" [ngClass]="wasSavedCorrectly ? 'message-success' : 'message-error'">
+    <p *ngIf="wasSavedCorrectly else error" >Poprawnie zapisano dane kampanii</p>
+    <ng-template #error>
+      <p>Nie udało się zapisać danych kampanii</p>
+    </ng-template>
+    <button kendoButton [icon]="'close'" [look]="'flat'" (click)="closeMessage()"></button>
+  </div>
+
   <div class="campaign-info">
     <div class="campaign-header">
       <h1>{{name || 'Nowa kampania'}}</h1>
 
       <kendo-buttongroup>
-        <button kendoButton [icon]="'undo'" [primary]="true" (click)="back()">Powrót</button>
-        <button kendoButton [icon]="'save'" [primary]="true" (click)="save()" [disabled]="!name">Zapisz</button>
-        <button kendoButton [icon]="'save'" [primary]="true" disabled="true">Zapisz i wyślij</button>
+        <button kendoButton
+                [icon]="'undo'"
+                [primary]="true"
+                (click)="back()">
+                Powrót
+        </button>
+        <button kendoButton
+                [icon]="isSaving ? 'loading' : 'save'"
+                [primary]="true"
+                (click)="save()"
+                [disabled]="!name">
+                Zapisz
+        </button>
+        <button kendoButton
+                [icon]="'save'"
+                [primary]="true"
+                disabled="true">
+                Zapisz i wyślij
+        </button>
       </kendo-buttongroup>
     </div>
 

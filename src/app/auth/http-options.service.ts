@@ -9,10 +9,10 @@ export class HttpOptionsService {
 
   constructor(private token: TokenGetterService) { }
 
-  getOptions(withAuthorization = true) {
+  getOptions(withAuthorization = true, json = false) {
     return {
       headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': json ? 'application/json' : 'application/x-www-form-urlencoded',
         Authorization: withAuthorization ? this.token.getToken() : ''
       }),
 
