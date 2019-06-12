@@ -13,9 +13,10 @@ import { LoadingDataModule } from '../loading-data/loading-data.module';
 import { CtiEditorComponent } from './cti-editor/cti-editor.component';
 import { CtiRoutingModule } from './cti-routing.module';
 import { CtiCasesEditorComponent } from './cti-cases-editor/cti-cases-editor.component';
+import { CtiCasesComponent } from './cti-cases/cti-cases.component';
 
 @NgModule({
-  declarations: [CtiComponent, CtiEditorComponent, CtiCasesEditorComponent],
+  declarations: [CtiComponent, CtiEditorComponent, CtiCasesEditorComponent, CtiCasesComponent],
   entryComponents: [CtiCasesEditorComponent],
   imports: [
     CommonModule,

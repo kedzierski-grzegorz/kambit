@@ -1,0 +1,38 @@
+@import "../../../theme/theme.scss";
+
+.cases-container{
+  width: 100%;
+  padding: 10px;
+
+  .cases-container-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 40px;
+    align-items: center;
+
+    button{
+      text-transform: capitalize;
+      border-radius: 0.25rem;
+    }
+  }
+
+  kendo-panelbar{
+    padding: 0 30px 0 30px;
+
+    .k-grid {
+      font-size: .85em;
+    }
+    .k-grid td {
+        line-height: 2em;
+    }
+
+    kendo-grid {
+      margin-bottom: 30px;
+    }
+  }
+
+  kendo-panelbar{
+    box-shadow: $panelbar-shadow;
+  }
+}

@@ -55,8 +55,6 @@ export class CtiCasesEditorComponent implements OnInit {
     for (const id of this.selectedCasesIds) {
       keyIds += id + ';';
     }
-    console.log(this.selectedCasesIds);
-    console.log(keyIds);
 
     this.ctiCampaigns.setCampaignPositions(this.id, keyIds).subscribe(() => {
       this.dialog.close();
