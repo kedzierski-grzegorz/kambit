@@ -12,9 +12,11 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LoadingDataModule } from '../loading-data/loading-data.module';
 import { CtiEditorComponent } from './cti-editor/cti-editor.component';
 import { CtiRoutingModule } from './cti-routing.module';
+import { CtiCasesEditorComponent } from './cti-cases-editor/cti-cases-editor.component';
 
 @NgModule({
-  declarations: [CtiComponent, CtiEditorComponent],
+  declarations: [CtiComponent, CtiEditorComponent, CtiCasesEditorComponent],
+  entryComponents: [CtiCasesEditorComponent],
   imports: [
     CommonModule,
     CtiRoutingModule,

@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="filter-panel">
+    <input class="k-textbox" type="text" placeholder="Strona" [(ngModel)]="pageName">
+    <input class="k-textbox" type="text" placeholder="Nr/symbol/TU" [(ngModel)]="revisionNumber">
+    <input class="k-textbox" type="text" placeholder="N/K/P/R" [(ngModel)]="nipPage">
+    <input class="k-textbox" type="text" placeholder="Sygnatura akt" [(ngModel)]="actSignature">
+    <input class="k-textbox" type="text" placeholder="Pakiet" [(ngModel)]="bundle">
+    <kendo-buttongroup>
+      <button kendoButton
+              [primary]="true"
+              [icon]="cases ? 'filter' : 'loading'"
+              (click)="filter()">
+              Filtruj
+      </button>
+      <button kendoButton
+              [look]="'flat'"
+              [icon]="'save'"
+              (click)="saveSelected()"
+              [disabled]="selectedCasesIds.length > 0 ? false : true">
+              Wybierz
+      </button>
+    </kendo-buttongroup>
+  </div>
+
+  <kendo-grid *ngIf="cases else loading"
+            [kendoGridBinding]="cases"
+            [pageable]="true"
+            [pageSize]="20"
+            [sortable]="true">
+              <kendo-grid-column title="" width="50">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" class="k-checkbox" [(ngModel)]="dataItem.flgPrzypisani" (change)="selectCase(dataItem.Id)" [disabled]="false" [id]="dataItem.Id"/>
+                    <label class="k-checkbox-label" [for]="dataItem.Id"></label>
+                  </div>
+                </ng-template>
+              </kendo-grid-column>
+              <kendo-grid-column field="NumerRepertorium" title="Nr">
+              </kendo-grid-column>
+              <kendo-grid-column field="SymbolWlasny" title="Symbol własny">
+              </kendo-grid-column>
+              <kendo-grid-column title="Data wpływu" >
+                <ng-template kendoGridCellTemplate let-dataItem>
+                  {{dataItem.DataWplywu | date:'y-M-d'}}
+                </ng-template>
+              </kendo-grid-column>
+              <kendo-grid-column field="Klient" title="Klient" >
+              </kendo-grid-column>
+              <kendo-grid-column field="StronaPrzeciwna" title="Strona przeciwna" >
+              </kendo-grid-column>
+              <kendo-grid-column field="Saldo" title="Saldo" >
+              </kendo-grid-column>
+              <kendo-grid-column field="Pakiet" title="Pakiet" >
+              </kendo-grid-column>
+    </kendo-grid>
+    <ng-template #loading>
+      <kambit-loading-data></kambit-loading-data>
+    </ng-template>
+</div>

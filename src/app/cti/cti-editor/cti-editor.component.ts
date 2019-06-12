@@ -1,8 +1,11 @@
+import { CtiCase } from './../shared/cti-case';
 import { CtiCampaignsService } from './../shared/cti-campaigns.service';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CtiCampaign } from '../shared/cti-campaign';
+import { DialogService, DialogCloseResult, DialogRef } from '@progress/kendo-angular-dialog';
+import { CtiCasesEditorComponent } from '../cti-cases-editor/cti-cases-editor.component';
 
 @Component({
   selector: 'app-cti-editor',
@@ -25,10 +28,20 @@ export class CtiEditorComponent implements OnInit {
   isSaving = false;
 
   campaign: CtiCampaign = {} as CtiCampaign;
+  campaignCases: CtiCase[] = [];
 
-  constructor(private location: Location, private route: ActivatedRoute, private ctiCampaigns: CtiCampaignsService) {
+  constructor(private location: Location,
+              private router: Router,
+              private route: ActivatedRoute,
+              private ctiCampaigns: CtiCampaignsService,
+              private dialogService: DialogService) {
     this.id = +this.route.snapshot.paramMap.get('id');
+    this.getAllCampaignDetails();
+  }
 
+  ngOnInit() {}
+
+  getAllCampaignDetails(): void {
     if (this.id !== 0) {
       this.ctiCampaigns.getCampaignById(this.id).subscribe((campaign: CtiCampaign) => {
         this.name = campaign.Nazwa;
@@ -38,10 +51,13 @@ export class CtiEditorComponent implements OnInit {
         this.note = campaign.Notatka;
         this.campaign = campaign;
       });
-    }
-  }
 
-  ngOnInit() {
+      this.ctiCampaigns.getCampaignCasesOfCampaign(this.id).subscribe(
+        campaignCases => {
+          this.campaignCases = campaignCases;
+        }
+      );
+    }
   }
 
   back(): void {
@@ -49,6 +65,10 @@ export class CtiEditorComponent implements OnInit {
   }
 
   save(): void {
+    if (!this.name) {
+      return;
+    }
+
     this.isSaving = true;
     this.campaign.Id = this.id;
     this.campaign.Nazwa = this.name;
@@ -58,10 +78,13 @@ export class CtiEditorComponent implements OnInit {
     this.campaign.Notatka = this.note;
 
     this.ctiCampaigns.setCampaign(this.campaign).subscribe(
-      res => {
+      (res: { Id: number }) => {
         this.wasSavedCorrectly = true;
         this.message.nativeElement.style.display = 'flex';
         this.isSaving = false;
+        this.id = res.Id;
+        this.getAllCampaignDetails();
+        this.router.navigate([`cti/edit/${res.Id}`], { replaceUrl: true });
       },
       err => {
         this.wasSavedCorrectly = false;
@@ -73,5 +96,47 @@ export class CtiEditorComponent implements OnInit {
 
   closeMessage(): void {
     this.message.nativeElement.style.display = 'none';
+  }
+
+  addCases(): void {
+    const dialogRef = this.dialogService.open({
+      title: 'Wybierz zlecenia',
+      content: CtiCasesEditorComponent,
+      actions: []
+    });
+
+    const userInfo = dialogRef.content.instance;
+    userInfo.id = this.id;
+    userInfo.dialog = dialogRef;
+
+    dialogRef.result.subscribe((result) => {
+      if (result instanceof DialogCloseResult) {
+        this.getAllCampaignDetails();
+      }
+    });
+  }
+
+  removeCase(caseId, caseName): void {
+    const dialog: DialogRef = this.dialogService.open({
+      title: caseName,
+      content: 'Czy na pewno chcesz usunąć wybraną pozycję?',
+      actions: [
+          { text: 'Nie', primary: true },
+          { text: 'Tak' }
+      ],
+      width: 450,
+      height: 200,
+      minWidth: 250
+    });
+
+    dialog.result.subscribe((result) => {
+      if (result instanceof DialogCloseResult) {
+
+      } else if (result.text === 'Tak') {
+        this.ctiCampaigns.deleteCampaignPosition(this.id, caseId).subscribe(
+          () => this.getAllCampaignDetails()
+        );
+      }
+    });
   }
 }

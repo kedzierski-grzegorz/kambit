@@ -16,7 +16,9 @@ export class HttpOptionsService {
         Authorization: withAuthorization ? this.token.getToken() : ''
       }),
 
-      params: {}
+      params: {},
+
+      body: ''
     };
   }
 }

@@ -1,0 +1,56 @@
+@import "../../../theme/theme.scss";
+
+.container{
+  width: 70vw;
+  max-height: 80vh;
+  padding: 10px;
+
+  .filter-panel{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input[type="text"]{
+      width: 13%;
+      font-size: 1.2em;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.25rem;
+      border-width: 1px;
+      color: #727272;
+      border-color: rgba(33, 37, 41, 0.15);
+    }
+
+    kendo-buttongroup{
+      margin: 0 30px;
+      position: relative;
+    }
+
+    button:first-child{
+      text-transform: capitalize;
+      color: #ffffff;
+      background-color: $primary !important;
+      border-color: $primary;
+      border-radius: 0.25rem;
+    }
+  }
+
+  kendo-grid{
+    margin: 30px 0;
+  }
+
+  .checkbox-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .k-grid {
+    font-size: .75em;
+  }
+  .k-grid td {
+      line-height: 2em;
+  }
+}

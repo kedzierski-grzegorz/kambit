@@ -63,8 +63,7 @@ export class CtiComponent implements OnInit {
       if (result instanceof DialogCloseResult) {
 
       } else if (result.text === 'Tak') {
-        this.ctiCampaigns.deleteCampaignById(id).subscribe();
-        this.clearFilter();
+        this.ctiCampaigns.deleteCampaignById(id).subscribe(() => this.clearFilter());
       }
     });
   }
